@@ -1,0 +1,11 @@
+@import url(./reset.css);
+@import url(./variaveis.css);
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600;900&display=swap');
+
+
+body{
+    background-color: var(--azul-acinzentado-700);
+    font-family: var(--font-family);
+    font-weight: 400;
+   
+}

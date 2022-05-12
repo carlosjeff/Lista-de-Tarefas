@@ -1,0 +1,125 @@
+.lista{
+   
+}
+
+.lista__item{
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr 1fr 0.5fr 0.5fr;
+    column-gap: 0.5em;
+    row-gap: 5px;
+
+    box-sizing: border-box;
+    padding: .8em;
+}
+
+.lista__check{
+    text-decoration: none;
+    border: 2px solid var(--branco);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    background-color: none;
+    grid-column: 1;
+    grid-row: span 4;
+}
+
+.check__icon:before{
+    content: "\f00c";
+    font-family: var(--icon);
+    color: transparent;
+    font-size: 1.5rem;
+    transition: all 0.5s ease;
+   
+}
+
+.lista__check:hover{
+    background-color: var(--branco);
+}
+
+.lista__check:hover .check__icon::before{
+    content: "\f00c";
+    color: var(--azul-acinzentado-700);
+}
+
+.lista__check-ativo{
+    background-color: var(--branco);
+}
+
+.check__icon-ativo::before{
+    content: "\f00c" !important;
+    color: var(--azul-acinzentado-700) !important;
+}
+
+.lista__check-ativo:hover .check__icon-ativo::before{
+    content: "\f00d" !important;
+}
+
+.lista__titulo{
+    color: var(--branco);
+    font-weight: 600;
+    font-size:1.3rem;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.lista__subtitulo{
+    color: var(--azul-acinzentado-200);
+    font-size: 0.9rem;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.lista__cards{
+    display: flex;
+    grid-row: span 2;
+    grid-column: 2;
+}
+
+.card{
+    border: 2px solid var(--branco);
+    box-sizing: border-box;
+    padding: 0.3em;
+    border-radius: 8px;
+    color: var(--branco);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lista__button{
+    grid-column: 3;
+    grid-row: span 3/ 3;
+    background-color: transparent;
+    box-sizing: border-box;
+    padding: .5em .8em ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    height: 50px;
+}
+
+.lista__button:hover{
+    cursor: pointer;
+    background-color: var(--branco);
+    color: var(--azul-acinzentado-700);
+    border-radius: 10px;
+}
+
+.lista__button:hover::before{
+    color: var(--azul-acinzentado-700);
+}
+
+.lista__button::before{
+    content: "\f1f8";
+    font-family: var(--icon);
+    color: var(--branco);
+    font-size: 1.5rem;
+    transition: all 0.5s ease;
+    text-align: center;
+}

@@ -1,0 +1,28 @@
+.button{
+
+    background-color: var(--azul-acizacinzentado-700);
+    border: 2px solid var(--branco);
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: var(--branco);
+    font-size: 1rem;
+    padding: 1em;
+    transition: all 0.5s ease;
+    width: 100%;
+    
+}
+
+.button-add:before { 
+
+    content: "\2b"; 
+    font-family: var(--icon);
+}
+
+.button:hover{
+
+    background-color: var(--branco);
+    border: 2px solid var(--branco);
+    color: var(--azul-acizacinzentado-700);
+   
+}
+
