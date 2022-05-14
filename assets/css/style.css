@@ -3,6 +3,7 @@
 @import url(./componentes/lista.css);
 @import url(./componentes/modal.css);
 @import url(./componentes/input.css);
+@import url(./componentes/listaConcluida.css);
 
 .dialog{
     display: none;

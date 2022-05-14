@@ -5,6 +5,14 @@ let dialog = document.querySelector('#dialog');
 let tarefas = document.getElementById('tarefas');
 
 document.getElementById('button-add').addEventListener('click', () => tarefaController.openDialog());
+document.querySelector('.tarefas__concluidas__button').addEventListener('click', () => {
+
+    document.getElementById('concluidas').classList.toggle('tarefas__concluidas-ativo')
+    document.querySelector('.tarefas__concluidas__button').classList.toggle('tarefas__concluidas__button-ativo')
+    
+    
+}
+    );
 
 tarefaController.observer(dialog, e => {
     console.log(e)

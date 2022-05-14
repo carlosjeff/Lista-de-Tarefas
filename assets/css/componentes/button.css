@@ -23,6 +23,6 @@
     background-color: var(--branco);
     border: 2px solid var(--branco);
     color: var(--azul-acizacinzentado-700);
-   
+   cursor: pointer;
 }
 

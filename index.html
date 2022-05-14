@@ -33,6 +33,20 @@
        </div> -->
     </section>
 
+    <section class="conteiner">
+        <button class="button tarefas__concluidas__button ">Concluidas</button>
+        <div class="tarefas__concluidas" id="concluidas">
+            <ul class="lista">
+                <li class="lista__item" id="${t.id}">
+                    <a href="#" class="lista__check"><i class="check__icon"></i></a>
+                    <h2 class="lista__titulo">${t.titulo}</h2>
+                    <p class="lista__subtitulo">${t.detalhe}</p>
+                    <button class="lista__button"></button>
+                 </li>
+            </ul>
+        </div>
+    </section>
+
     <div id="dialog" class="dialog"></div>
 
     <script src="./assets/js/index.js" type="module"></script>
