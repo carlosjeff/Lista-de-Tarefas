@@ -13,6 +13,52 @@
     animation-iteration-count: 1;
 }
 
+.tarefa{
+    box-sizing: border-box;
+    margin-top: 50%
+}
+
+.tarefa__titulo{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--branco);
+    text-align: center;
+}
+
+.tarefa__mensagem{
+    font-size: 1rem;
+    color: var(--azul-acinzentado-200);
+    text-align: center;
+}
+
+.tarefa__icon-check{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.tarefa__icon-check:before{
+    content: "\f46c";
+    font-family: var(--icon);
+    color: var(--branco);
+    font-size: 5rem;
+}
+
+.tarefa__icon-vazio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.tarefa__icon-vazio:before{
+    content: "\f328";
+    font-family: var(--icon);
+    color: var(--branco);
+    font-size: 5rem;
+}
+
 @keyframes swing
 {
     15%

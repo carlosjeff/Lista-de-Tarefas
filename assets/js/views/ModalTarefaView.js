@@ -1,15 +1,18 @@
-export class ModalTarefaView {
+import {DialogView} from './DialogView.js'
+
+export class ModalTarefaView extends DialogView {
 
     #element;
 
     constructor(element) {
-        this.#element = element;;
+       super(element);
+        this.#element = element;
     }
 
 
-    #template(model) {
+    template(model) {
 
-        this.#modicaClasse();
+        this.modicaClasse();
 
         return `
             <div class="modal-content">
@@ -38,16 +41,7 @@ export class ModalTarefaView {
         `
     }
 
-    open(model) {
-        this.#element.innerHTML = this.#template(model);
-    }
-
-    close(){
-        this.#modicaClasse();
-        this.#element.innerHTML = '';
-    }
-
-    #modicaClasse(){
+    modicaClasse(){
         this.#element.classList.toggle('modal')
         this.#element.classList.toggle('dialog')
     }

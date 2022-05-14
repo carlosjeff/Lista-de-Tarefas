@@ -1,35 +1,39 @@
 import { TarefaController } from './controllers/TarefaController.js'
 
 let tarefaController = new TarefaController();
-
 let dialog = document.querySelector('#dialog');
+let tarefas = document.getElementById('tarefas');
 
 document.getElementById('button-add').addEventListener('click', () => tarefaController.openDialog());
 
-let obeserver = new MutationObserver(mutations =>
-    mutations.forEach(
-        mutation => {
-            if (dialog.classList.contains('modal')) {
+tarefaController.observer(dialog, e => {
+    console.log(e)
+    if (dialog.classList.contains('modal')) {
 
-                document.querySelectorAll('.close')
-                    .forEach(c => c.addEventListener(
-                        'click', () => tarefaController.closeDialog())
-                    );
+        document.querySelectorAll('.close')
+            .forEach(c => c.addEventListener(
+                'click', () => tarefaController.closeDialog())
+            );
 
-                document.querySelector('.salvar').addEventListener(
-                    'click', () => tarefaController.adicionaTarefa()
-                )
-            }
+        document.querySelector('.salvar').addEventListener(
+            'click', () => tarefaController.adiciona()
+        )
+    }
 
-            if (dialog.classList.contains('toast')) {
+    if (dialog.classList.contains('toast')) {
 
-                document.querySelector('.close').addEventListener(
-                        'click', () => tarefaController.closeDialog()
-                    );
-            }
-        }
-    ));
+        document.querySelector('.close').addEventListener(
+                'click', () => tarefaController.closeDialog()
+            );
+    }
+});
 
-let config = { childList: true };
+tarefaController.observer(tarefas, e => {
 
-obeserver.observe(dialog, config);
+    
+    tarefas.querySelectorAll('.lista__item').forEach(item => {
+       item.querySelector('.lista__check').addEventListener('click', e => {
+        tarefaController.concluir(e, item.id)
+       })
+    })
+})

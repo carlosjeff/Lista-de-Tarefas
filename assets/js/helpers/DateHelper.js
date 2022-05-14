@@ -10,4 +10,10 @@ export class DateHelper{
 
     }
 
+    static verificaData(data){
+        // 2022-05-12T17:21
+
+       return /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(data)
+    }
+
 }

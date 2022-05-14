@@ -1,15 +1,18 @@
-export class ToastView {
+import {DialogView} from './DialogView.js'
+
+export class ToastView extends DialogView {
 
     #element;
 
     constructor(element) {
-        this.#element = element;;
+        super(element);
+        this.#element = element;
     }
 
 
-    #template(model) {
+    template(model) {
 
-        this.#modicaClasse();
+        this.modicaClasse();
 
         return `
             <div class="toast__container">
@@ -20,18 +23,8 @@ export class ToastView {
         `
     }
 
-    open(model) {
-        this.#element.innerHTML = this.#template(model);
-    }
-
-    close(){
-        this.#modicaClasse();
-        this.#element.innerHTML = '';
-    }
-
-    #modicaClasse(){
+    modicaClasse(){
         this.#element.classList.toggle('toast')
         this.#element.classList.toggle('dialog')
     }
-
 }
