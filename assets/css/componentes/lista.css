@@ -1,6 +1,9 @@
 .lista{
-   
+    animation: swing 1s ease;
+    animation-iteration-count: 1;
+    transition: all 0.5s ease;
 }
+
 
 .lista__item{
     display: grid;
@@ -8,6 +11,7 @@
     grid-template-rows: 1fr 1fr 0.5fr 0.5fr;
     column-gap: 0.5em;
     row-gap: 5px;
+    padding: 1em;
 
     box-sizing: border-box;
     padding: .8em;

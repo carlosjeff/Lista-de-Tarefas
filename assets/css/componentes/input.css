@@ -18,3 +18,7 @@
 .input:focus-visible{
     outline-color: var(--azul-acinzentado-700);
 }
+
+.input-none{
+    display: none !important;
+}

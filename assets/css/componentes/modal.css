@@ -143,7 +143,13 @@
     width: 100%;
 }
 
-.salvar::before{
+.salvar:hover{
+    cursor: pointer;
+    background-color: var(--branco);
+    color: var(--azul-acinzentado-700);
+}
+
+.criar::before{
     content: "\f00c";
     font-family: var(--icon);
     color: var(--branco);
@@ -152,12 +158,19 @@
     margin-right: .3em;
 }
 
-.salvar:hover{
-    cursor: pointer;
-    background-color: var(--branco);
+.criar:hover::before{
     color: var(--azul-acinzentado-700);
 }
 
-.salvar:hover::before{
+.editar::before{
+    content: "\f304";
+    font-family: var(--icon);
+    color: var(--branco);
+    font-size: 1.2rem;
+    transition: all 0.5s ease;
+    margin-right: .3em;
+}
+
+.editar:hover::before{
     color: var(--azul-acinzentado-700);
 }

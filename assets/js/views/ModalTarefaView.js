@@ -1,4 +1,5 @@
 import {DialogView} from './DialogView.js'
+import {DateHelper} from '../helpers/DateHelper.js'
 
 export class ModalTarefaView extends DialogView {
 
@@ -22,23 +23,39 @@ export class ModalTarefaView extends DialogView {
                 </div>
                 <div class="modal-body">
                     <form id="form">
-                        <div class="input-container">
-                            <input type="text" id="titulo" class="input" placeholder="Titulo da Tarefa">
+                        <div class="input-container input-none">
+                            <input type="text" id="id" value="${this.#temValor(model.id)}" class="input">
                         </div>
                         <div class="input-container">
-                            <input type="text" id="detalhe" class="input" placeholder="Detalhe da tarefa">
+                            <input type="text" id="titulo" value="${this.#temValor(model.titulo)}" class="input" placeholder="Titulo da Tarefa">
                         </div>
                         <div class="input-container">
-                            <input type="datetime-local" id="dataHora" class="input" placeholder="Titulo da Tarefa">
+                            <input type="text" id="detalhe" value="${this.#temValor(model.detalhe)}" class="input" placeholder="Detalhe da tarefa">
+                        </div>
+                        <div class="input-container">
+                            <input type="datetime-local" value="${this.#formataDataInput(model.dataHora)}" id="dataHora" class="input" placeholder="Titulo da Tarefa">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button class="close close-footer">Fechar</button>
-                    <button class="salvar salvar-check">Criar</button>
+                    ${
+                        model.id > 0 ? '<button class="salvar editar">Editar</button>' : 
+                                        '<button class="salvar criar">Criar</button>'
+                    }
+                    
                 </div>
             </div>
         `
+    }
+
+    #temValor(value){
+        return value ? value : ''
+    }
+
+    #formataDataInput(data){
+      
+          return data ? DateHelper.dataParaInput(data) : '';
     }
 
     modicaClasse(){

@@ -34,6 +34,7 @@ export class TarefaDao{
     }
 
     editar(tarefa){
+        console.log(tarefa);
         return new Promise((resolve, reject) => {
 
             let request = this.#connection

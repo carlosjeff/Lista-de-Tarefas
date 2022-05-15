@@ -14,6 +14,10 @@ export class ListaTarefasModel{
         console.log(this.#lista)
     }
 
+    editar(tarefa){
+        this.#lista = this.#lista.map(e => e.id == tarefa.id ? tarefa : e);
+    }
+
     get tarefas(){
         return this.#lista.slice();
     }

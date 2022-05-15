@@ -10,17 +10,23 @@ export class ToastView extends DialogView {
     }
 
 
-    template(model) {
+    template(model, tipo) {
 
         this.modicaClasse();
 
+
+
         return `
             <div class="toast__container">
-                <i class="tost__icon tost__icon-check"></i>
+                <i class="tost__icon tost__icon-${tipo}"></i>
                 <h3 class="tost__titulo">${model}</h3>
                 <button class="close"></button>
             </div>
         `
+    }
+
+    open(model, tipo) {
+        this.#element.innerHTML = this.template(model,tipo);
     }
 
     modicaClasse(){

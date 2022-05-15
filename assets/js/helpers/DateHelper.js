@@ -10,6 +10,13 @@ export class DateHelper{
 
     }
 
+    static dataParaInput(data){
+        
+        let numero = n => n < 10 ? '0' + n : n;
+
+        return `${data.getFullYear()}-${numero(data.getMonth() + 1)}-${numero(data.getDate())}T${numero(data.getHours())}:${numero(data.getMinutes())}`
+    }
+
     static verificaData(data){
         // 2022-05-12T17:21
 

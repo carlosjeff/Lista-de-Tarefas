@@ -42,7 +42,6 @@ export class TarefaController{
     }
 
     #init(){
-        this.#updateView();
 
         this.#service.listar().then(tarefas => {
             tarefas.forEach(t => { 
@@ -52,8 +51,8 @@ export class TarefaController{
                     this.#listaTarefas.adicionar(t)
                 }
             });
-            this.#updateView();
-        })
+           
+        }).then(() =>  this.#updateView())
     }
 
     observer(element,eventos){
@@ -64,7 +63,8 @@ export class TarefaController{
         return obeserver
     }
 
-    openDialog(model = ''){
+    openDialog(id = ''){
+        let model = id ? this.#listaTarefas.tarefas.find(t => t.id == id) : id
         this.#modalTarefaView.open(model);
     }
 
@@ -72,8 +72,8 @@ export class TarefaController{
         this.#modalTarefaView.close();
     }
 
-    mensagem(messagem){
-        this.#toastView.open(messagem);
+    mensagem(messagem, tipo  = 'sucesso'){
+        this.#toastView.open(messagem, tipo);
         setTimeout(() => {
             this.#toastView.close();
         },2000)
@@ -84,19 +84,26 @@ export class TarefaController{
         let tarefa =  this.#cria();
 
         this.#service.cadastrar(tarefa)
-            .then(objeto => {
-                this.#listaTarefas.adicionar(objeto);
-                this.#updateView();
-                this.closeDialog();
-                this.mensagem('Tarefa criado com sucesso!');
-        })
+            .then(objeto => this.#listaTarefas.adicionar(objeto))
+            .then(() => this.#updateView())
+            .then(() => this.closeDialog())
+            .then(() => this.mensagem('Tarefa criado com sucesso!'))
+            .catch(() => this.mensagem('Não foi possível adiconar a tarefa!', 'erro'))
+        
 
     }
 
-    edita(tarefa){
-        this.#service.editar(tarefa).then(objeto => {
-            this.mensagem('Tarefa editada com sucesso!');
-        })
+    edita(id){
+        console.log(id);
+        let tarefa =  this.#cria();
+        tarefa.id = id;
+
+        this.#service.editar(tarefa)
+            .then(objeto => this.#listaTarefas.editar(objeto))
+            .then(() => this.#updateView())
+            .then(() => this.closeDialog())
+            .then(() => this.mensagem('Tarefa editada com sucesso!', 'editado'))
+            .catch(() => this.mensagem('Não foi possível editar a tarefa!', 'erro'))
     }
 
     excluir(id){
@@ -105,7 +112,7 @@ export class TarefaController{
             .then(() => this.#listaTarefasConcluidas.remover(id))
             .then(() => this.#updateView())
             .then(() => this.mensagem('Tarefa foi removida com sucesso!'))
-            .catch(() => this.mensagem('Não foi possível remover a tarefa!'))
+            .catch(() => this.mensagem('Não foi possível remover a tarefa!', 'erro'))
     }
 
     concluir(evento, id, concluir = true){
@@ -121,7 +128,7 @@ export class TarefaController{
             .then(() => concluir ? this.#listaTarefasConcluidas.adicionar(tarefa) : this.#listaTarefasConcluidas.remover(id))
             .then(() => this.#updateView())
             .then(() => this.mensagem(concluir ? 'Tarefa concluida com sucesso!' : 'Tarefa marcada como não concluida!'))
-            .catch(() => this.mensagem('Erro ao realizar a acão!'))
+            .catch(() => this.mensagem('Erro ao realizar a acão!', 'erro'))
     }
 
     #cria(){

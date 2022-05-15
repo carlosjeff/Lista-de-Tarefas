@@ -62,40 +62,15 @@
 
 @keyframes swing
 {
-    15%
+    from
     {
-        -webkit-transform: translateX(5px);
-        transform: translateX(5px);
-        opacity: 0.80;
-    }
-    30%
-    {
-        -webkit-transform: translateX(-5px);
-        transform: translateX(-5px);
-        opacity: 0.65;
-    }
-    50%
-    {
-        -webkit-transform: translateX(3px);
-        transform: translateX(3px);
-        opacity: 0.50;
-    }
-    65%
-    {
-        -webkit-transform: translateX(-3px);
-        transform: translateX(-3px);
-        opacity: 0.30;
-    }
-    80%
-    {
-        -webkit-transform: translateX(2px);
-        transform: translateX(2px);
-        opacity: 0.15;
-    }
-    100%
-    {
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
+        transform: translateY(5px);
         opacity: 0;
+    }
+    to
+    {
+
+        transform: translateY(0);
+        opacity: 1;
     }
 }
