@@ -4,31 +4,64 @@ import {ListaTarefasModel} from '../models/ListaTarefasModel.js'
 import {TarefasView} from '../views/TarefasView.js'
 import {ToastView} from '../views/ToastView.js'
 import {TarefaService} from '../services/TarefaService.js'
+import {ListaTarefasConcluidasModel} from '../models/ListaTarefasConcluidas.js'
+import {TarefasConcluidasView} from '../views/TarefasConcluidasView.js'
  
 export class TarefaController{
 
     #elemntDialog;
     #elementTarefas;
+    #elementTarefasConcluidas;
+
     #listaTarefas;
+    #listaTarefasConcluidas;
+
     #toastView;
     #modalTarefaView;
     #tarefaView;
+    #tarefasConcluidasView;
+
     #service;
 
     constructor() {
         this.#elemntDialog = document.getElementById('dialog');
         this.#elementTarefas = document.getElementById('tarefas');
-        this.#modalTarefaView = new ModalTarefaView(this.#elemntDialog)
+        this.#elementTarefasConcluidas = document.getElementById('concluidas');
+        
         this.#listaTarefas = new ListaTarefasModel();
+        this.#listaTarefasConcluidas = new ListaTarefasConcluidasModel();
+
+        this.#modalTarefaView = new ModalTarefaView(this.#elemntDialog)
         this.#toastView = new ToastView(this.#elemntDialog);
         this.#tarefaView = new TarefasView(this.#elementTarefas);
+        this.#tarefasConcluidasView = new TarefasConcluidasView(this.#elementTarefasConcluidas)
+
         this.#service = new TarefaService();
+
+        this.#init();
+    }
+
+    #init(){
         this.#updateView();
-       
+
         this.#service.listar().then(tarefas => {
-            tarefas.forEach(t => this.#listaTarefas.adicionar(t));
+            tarefas.forEach(t => { 
+                if(t.concluido){
+                    this.#listaTarefasConcluidas.adicionar(t)
+                }else{
+                    this.#listaTarefas.adicionar(t)
+                }
+            });
             this.#updateView();
         })
+    }
+
+    observer(element,eventos){
+
+        let obeserver = new MutationObserver(mutations => mutations.forEach(e => eventos(e)));
+        obeserver.observe(element, { childList: true });
+
+        return obeserver
     }
 
     openDialog(model = ''){
@@ -55,26 +88,40 @@ export class TarefaController{
                 this.#listaTarefas.adicionar(objeto);
                 this.#updateView();
                 this.closeDialog();
-                this.mensagem('Tarefa Criado Com Sucesso!');
+                this.mensagem('Tarefa criado com sucesso!');
         })
 
     }
 
     edita(tarefa){
         this.#service.editar(tarefa).then(objeto => {
-            this.mensagem('Tarefa editada Com Sucesso!');
+            this.mensagem('Tarefa editada com sucesso!');
         })
     }
 
-    concluir(evento, id){
-        evento.preventDefault();
-        let tarefa = this.#listaTarefas.tarefas.find(t => t.id == id);
-        tarefa.concluido = !tarefa.concluido
-        this.edita(tarefa)
+    excluir(id){
+        this.#service.deletar(id)
+            .then(() => this.#listaTarefas.remover(id))  
+            .then(() => this.#listaTarefasConcluidas.remover(id))
+            .then(() => this.#updateView())
+            .then(() => this.mensagem('Tarefa foi removida com sucesso!'))
+            .catch(() => this.mensagem('Não foi possível remover a tarefa!'))
     }
 
-    retirarDaLista(){
+    concluir(evento, id, concluir = true){
+        evento.preventDefault();
+        let tarefa = this.#listaTarefas.tarefas.find(t => t.id == id);
+        if(!concluir){
+            tarefa = this.#listaTarefasConcluidas.tarefas.find(t => t.id == id);
+        }
+        tarefa.concluido = !tarefa.concluido
         
+        this.#service.editar(tarefa)
+            .then(() => concluir ? this.#listaTarefas.remover(id) : this.#listaTarefas.adicionar(tarefa))
+            .then(() => concluir ? this.#listaTarefasConcluidas.adicionar(tarefa) : this.#listaTarefasConcluidas.remover(id))
+            .then(() => this.#updateView())
+            .then(() => this.mensagem(concluir ? 'Tarefa concluida com sucesso!' : 'Tarefa marcada como não concluida!'))
+            .catch(() => this.mensagem('Erro ao realizar a acão!'))
     }
 
     #cria(){
@@ -89,13 +136,8 @@ export class TarefaController{
 
     #updateView(){
         this.#tarefaView.update(this.#listaTarefas.tarefas)
+        this.#tarefasConcluidasView.update(this.#listaTarefasConcluidas.tarefas)
     }
 
-    observer(element,eventos){
 
-        let obeserver = new MutationObserver(mutations => mutations.forEach(e => eventos(e)));
-        obeserver.observe(element, { childList: true });
-
-        return obeserver
-    }
 }

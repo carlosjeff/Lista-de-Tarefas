@@ -3,6 +3,7 @@ import { TarefaController } from './controllers/TarefaController.js'
 let tarefaController = new TarefaController();
 let dialog = document.querySelector('#dialog');
 let tarefas = document.getElementById('tarefas');
+let tarefasConcluidas = document.getElementById('concluidas');
 
 document.getElementById('button-add').addEventListener('click', () => tarefaController.openDialog());
 document.querySelector('.tarefas__concluidas__button').addEventListener('click', () => {
@@ -40,8 +41,17 @@ tarefaController.observer(tarefas, e => {
 
     
     tarefas.querySelectorAll('.lista__item').forEach(item => {
-       item.querySelector('.lista__check').addEventListener('click', e => {
-        tarefaController.concluir(e, item.id)
-       })
+       item.querySelector('.lista__check').addEventListener('click', e => tarefaController.concluir(e, item.id))
+
+       item.querySelector('.lista__button').addEventListener('click', e => tarefaController.excluir(item.id))
     })
+})
+
+tarefaController.observer(tarefasConcluidas, e =>{
+
+    tarefasConcluidas.querySelectorAll('.lista__item').forEach(item => {
+        item.querySelector('.lista__check').addEventListener('click', e => tarefaController.concluir(e, item.id, false))
+ 
+        item.querySelector('.lista__button').addEventListener('click', e => tarefaController.excluir(item.id))
+     })
 })

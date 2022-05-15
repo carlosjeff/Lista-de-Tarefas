@@ -16,7 +16,7 @@
 
 .tarefa{
     box-sizing: border-box;
-    margin-top: 50%
+    margin-top: 1em;
 }
 
 .tarefa__titulo{

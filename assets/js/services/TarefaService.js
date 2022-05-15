@@ -26,6 +26,16 @@ export class TarefaService{
                 });
     }
 
+    deletar(id){
+        return ConnectionFactory
+            .getConnection()
+            .then(connection => new TarefaDao(connection))
+            .then(dao => dao.delete(id))
+            .catch(err => {
+                throw new Error(err);
+            })
+    }
+
     listar(){
 
         return ConnectionFactory

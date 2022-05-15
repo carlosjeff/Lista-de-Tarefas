@@ -1,14 +1,14 @@
 .tarefas__concluidas__button{
+
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     justify-self: center;
     column-gap: .3em;
-
-    
 }
 
 .tarefas__concluidas__button:before {
+
     content: "\f00c";
     font-family: var(--icon);
     color: var(--branco);
@@ -17,6 +17,7 @@
 }
 
 .tarefas__concluidas__button:after {
+
     content: "\f078";
     font-family: var(--icon);
     color: var(--branco);
@@ -25,36 +26,60 @@
 }
 
 .tarefas__concluidas__button:hover:before{
+
     content: "\f00c";
     color: var(--azul-acinzentado-700);
 }
 
 .tarefas__concluidas__button:hover:after{
+
     content: "\f078";
     color: var(--azul-acinzentado-700);
 }
 
 .tarefas__concluidas__button-ativo:after{
+
     content: "\f106" !important;
     animation: rotacao__icon 1s ease;
     animation-iteration-count: 1;
-    
 }
 
 .tarefas__concluidas__button-desativo:after{
+
     animation: rotacao__icon 1s ease;
     animation-iteration-count: 1;
     animation-direction: reverse;
 }
 
 .tarefas__concluidas{
+
     display: none
 }
 
 .tarefas__concluidas-ativo{
+
     animation: open__lista 1s ease;
     animation-iteration-count: 1;
     display: block !important;
+}
+
+
+.lista__check-concluido{
+    background-color: var(--branco);
+}
+
+.lista__check-concluido .check__icon::before{
+    content: "\f00c";
+    color: var(--azul-acinzentado-700);
+    transition: all 1s ease;
+}
+
+.lista__check-concluido:hover .check__icon::before{
+    content: "\f00d";
+}
+
+.lista__titulo-concluido{
+    text-decoration: line-through;
 }
 
 @keyframes open__lista {

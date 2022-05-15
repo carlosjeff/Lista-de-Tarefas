@@ -46,10 +46,6 @@
     color: var(--azul-acinzentado-700);
 }
 
-.lista__check-ativo{
-    background-color: var(--branco);
-}
-
 .check__icon-ativo::before{
     content: "\f00c" !important;
     color: var(--azul-acinzentado-700) !important;

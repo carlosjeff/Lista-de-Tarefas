@@ -55,6 +55,28 @@ export class TarefaDao{
         })
     }
 
+    
+    delete(id){
+        return new Promise((resolve, reject) => {
+
+            let request = this.#connection
+            .transaction([this.#store], 'readwrite')
+            .objectStore(this.#store)
+            .delete(+id);
+
+            request.onsuccess = e => {
+                console.log(e)
+                resolve();
+            };
+
+            request.onerror = e => {
+
+                console.log(e.target.error);
+                reject('Não foi possível excluir Tarefa!');
+            };
+        })
+    }
+
 
     listarTodos(){
         
