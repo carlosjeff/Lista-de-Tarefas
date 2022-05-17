@@ -1,3 +1,17 @@
 .conteiner{
     margin: .5em;
 }
+
+@media (min-width: 1281px){
+    .conteiner{
+        width: 60%;
+        margin: .5em auto;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1281px){
+    .conteiner{
+        width: 80%;
+        margin: .5em auto;
+    }
+}

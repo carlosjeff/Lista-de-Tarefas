@@ -34,7 +34,6 @@ export class TarefaDao{
     }
 
     editar(tarefa){
-        console.log(tarefa);
         return new Promise((resolve, reject) => {
 
             let request = this.#connection
@@ -43,7 +42,6 @@ export class TarefaDao{
             .put(this.#criaObjeto(tarefa), tarefa.id);
 
             request.onsuccess = e => {
-                console.log(e)
                 tarefa.id = e.target.result;
                 resolve(tarefa);
             };
@@ -66,7 +64,6 @@ export class TarefaDao{
             .delete(+id);
 
             request.onsuccess = e => {
-                console.log(e)
                 resolve();
             };
 

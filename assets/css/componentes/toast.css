@@ -75,3 +75,34 @@
         opacity: 1;
     }
 }
+
+
+@media (min-width: 1281px){
+    .toast{
+        width: 400px;
+        top: 0;
+        right: 40px;
+        left: auto;
+    }
+
+    .toast__container{
+    
+        height: 100%;
+        width: 400px;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1281px){
+    .toast{
+        width: 400px;
+        
+        right: 40px;
+        left: auto;
+    }
+
+    .toast__container{
+    
+        height: 100%;
+        width: 400px;
+    }
+}

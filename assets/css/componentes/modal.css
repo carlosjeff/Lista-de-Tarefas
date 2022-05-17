@@ -174,3 +174,56 @@
 .editar:hover::before{
     color: var(--azul-acinzentado-700);
 }
+
+
+@media (min-width: 1281px){
+
+    .modal{
+        padding-top: 5%;
+    }
+
+    .modal-content{
+        width: 700px;
+        grid-template-rows: 0.5fr 1.5fr .5fr;
+    }
+
+    .modal-footer{
+        flex-direction: row;
+    }
+
+    .salvar{
+        width: 200px;
+    }
+
+    .close-footer{
+        width: 200px;
+        margin-top: 0;
+        margin-right: 1em;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1281px){
+
+    .modal{
+        padding-top: 10%;
+    }
+   
+    .modal-content{
+        width: 700px;
+        grid-template-rows: 0.5fr 1.5fr .5fr;
+    }
+
+    .modal-footer{
+        flex-direction: row;
+    }
+
+    .salvar{
+        width: 200px;
+    }
+
+    .close-footer{
+        width: 200px;
+        margin-top: 0;
+        margin-right: 1em;
+    }
+}

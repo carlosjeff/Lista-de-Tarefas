@@ -10,6 +10,7 @@ import {TarefasConcluidasView} from '../views/TarefasConcluidasView.js'
 export class TarefaController{
 
     #elemntDialog;
+    #elementToast;
     #elementTarefas;
     #elementTarefasConcluidas;
 
@@ -27,12 +28,13 @@ export class TarefaController{
         this.#elemntDialog = document.getElementById('dialog');
         this.#elementTarefas = document.getElementById('tarefas');
         this.#elementTarefasConcluidas = document.getElementById('concluidas');
+        this.#elementToast = document.getElementById('dialog-toast')
         
         this.#listaTarefas = new ListaTarefasModel();
         this.#listaTarefasConcluidas = new ListaTarefasConcluidasModel();
 
         this.#modalTarefaView = new ModalTarefaView(this.#elemntDialog)
-        this.#toastView = new ToastView(this.#elemntDialog);
+        this.#toastView = new ToastView(this.#elementToast);
         this.#tarefaView = new TarefasView(this.#elementTarefas);
         this.#tarefasConcluidasView = new TarefasConcluidasView(this.#elementTarefasConcluidas)
 
@@ -79,8 +81,11 @@ export class TarefaController{
         },2000)
     }
 
-    adiciona(){
+    fechaMensagem(){
+        this.#toastView.close();
+    }
 
+    adiciona(){
         let tarefa =  this.#cria();
 
         this.#service.cadastrar(tarefa)
@@ -94,10 +99,8 @@ export class TarefaController{
     }
 
     edita(id){
-        console.log(id);
         let tarefa =  this.#cria();
         tarefa.id = id;
-
         this.#service.editar(tarefa)
             .then(objeto => this.#listaTarefas.editar(objeto))
             .then(() => this.#updateView())

@@ -14,7 +14,7 @@ export class TarefasView{
                     model.map(t => `
                         <li class="lista__item" id="${t.id}">
                             <a href="#" class="lista__check"><i class="check__icon"></i></a>
-                            <h2 class="lista__titulo">${t.titulo}</h2>
+                            <h2 class="lista__titulo" >${t.titulo}</h2>
                             <p class="lista__subtitulo">${t.detalhe}</p>
                             <div class="lista__cards">
                                 <span class="card">${t.dataHoraFormt}</span>
@@ -41,7 +41,7 @@ export class TarefasView{
     update(model){
         if(model.length == 0){
             this.#element.innerHTML = this.#templateVazio();
-         
+            
             return;
         }else {
 

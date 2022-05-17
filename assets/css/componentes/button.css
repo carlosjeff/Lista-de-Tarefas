@@ -12,7 +12,7 @@
     
 }
 
-.button-add:before { 
+.button__icon-add:before { 
 
     content: "\2b"; 
     font-family: var(--icon);

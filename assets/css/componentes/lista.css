@@ -67,11 +67,17 @@
     grid-row: 1;
 }
 
+.lista__titulo:hover{
+    cursor: pointer;
+    color: var(--azul-acinzentado-100);
+}
+
 .lista__subtitulo{
     color: var(--azul-acinzentado-200);
     font-size: 0.9rem;
     grid-column: 2;
     grid-row: 2;
+    cursor: pointer;
 }
 
 .lista__cards{
@@ -89,6 +95,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .lista__button{
@@ -100,8 +107,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-self: flex-end;
     border: none;
     height: 50px;
+    width: 50px;
 }
 
 .lista__button:hover{
@@ -122,4 +131,19 @@
     font-size: 1.5rem;
     transition: all 0.5s ease;
     text-align: center;
+}
+
+
+@media (min-width: 1281px){
+    .lista__item{
+        grid-template-columns: .5fr 4fr 1fr;
+        column-gap: 0;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1281px){
+    .lista__item{
+        grid-template-columns: .5fr 4fr 1fr;
+        column-gap: 0;
+    }
 }
