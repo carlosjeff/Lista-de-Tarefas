@@ -32,7 +32,7 @@ function eventosDialog(){
             );
         if(form?.id.value > 0){
             
-            actionEvent =  () => tarefaController.edita(+form.id.value);
+            actionEvent = () => tarefaController.edita(+form.id.value);
 
             document.addEventListener('keyup', tecladoEvento)
 
@@ -41,12 +41,12 @@ function eventosDialog(){
             )
         }else{
             
-            actionEvent =  () =>  tarefaController.adiciona();
+            actionEvent = () =>  tarefaController.adiciona();
 
             document.addEventListener('keyup', tecladoEvento)
 
             document.querySelector('.salvar').addEventListener(
-                'click', () => actionEvent
+                'click',  actionEvent
             )
         }
 
