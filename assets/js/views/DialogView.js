@@ -16,13 +16,4 @@ export class  DialogView {
         this.#element.innerHTML = this.template(model);
     }
 
-    close(){
-        this.modicaClasse();
-        this.#element.innerHTML = '';
-    }
-
-    modicaClasse(){
-        this.#element.classList.toggle('toast')
-        this.#element.classList.toggle('dialog')
-    }
 }

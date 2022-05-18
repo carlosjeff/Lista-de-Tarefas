@@ -21,6 +21,7 @@ export class TarefaController{
     #modalTarefaView;
     #tarefaView;
     #tarefasConcluidasView;
+    #tempoMensagem
 
     #service;
 
@@ -75,13 +76,15 @@ export class TarefaController{
     }
 
     mensagem(messagem, tipo  = 'sucesso'){
+        clearTimeout(this.#tempoMensagem);
         this.#toastView.open(messagem, tipo);
-        setTimeout(() => {
+       this.#tempoMensagem = setTimeout(() => {
             this.#toastView.close();
         },2000)
     }
 
     fechaMensagem(){
+        clearTimeout(this.#tempoMensagem);
         this.#toastView.close();
     }
 

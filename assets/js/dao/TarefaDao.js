@@ -20,7 +20,6 @@ export class TarefaDao{
             .add(this.#criaObjeto(tarefa));
 
             request.onsuccess = e => {
-                console.log(e)
                 tarefa.id = e.target.result;
                 resolve(tarefa);
             };

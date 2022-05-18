@@ -13,7 +13,8 @@ export class ModalTarefaView extends DialogView {
 
     template(model) {
 
-        this.modicaClasse();
+        this.#element.classList.add('modal')
+        this.#element.classList.remove('dialog')
 
         return `
             <div class="modal-content">
@@ -58,9 +59,10 @@ export class ModalTarefaView extends DialogView {
           return data ? DateHelper.dataParaInput(data) : '';
     }
 
-    modicaClasse(){
-        this.#element.classList.toggle('modal')
-        this.#element.classList.toggle('dialog')
-    }
 
+    close(){
+        this.#element.classList.remove('modal')
+        this.#element.classList.add('dialog')
+        this.#element.innerHTML = '';
+    }
 }

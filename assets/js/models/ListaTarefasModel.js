@@ -11,7 +11,6 @@ export class ListaTarefasModel{
 
     remover(id){
         this.#lista = this.#lista.filter(e => e.id != id);
-        console.log(this.#lista)
     }
 
     editar(tarefa){

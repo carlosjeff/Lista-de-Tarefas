@@ -10,7 +10,6 @@ export class ListaTarefasConcluidasModel{
 
     remover(id){
         this.#lista = this.#lista.filter(e => e.id != id);
-        console.log(this.#lista)
     }
 
     get tarefas(){

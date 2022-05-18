@@ -12,8 +12,9 @@ export class ToastView extends DialogView {
 
     template(model, tipo) {
 
-        this.modicaClasse();
 
+        this.#element.classList.add('toast')
+        this.#element.classList.remove('dialog')
 
 
         return `
@@ -28,9 +29,10 @@ export class ToastView extends DialogView {
     open(model, tipo) {
         this.#element.innerHTML = this.template(model,tipo);
     }
-
-    modicaClasse(){
-        this.#element.classList.toggle('toast')
-        this.#element.classList.toggle('dialog')
+    
+    close(){
+        this.#element.classList.remove('toast')
+        this.#element.classList.add('dialog')
+        this.#element.innerHTML = '';
     }
 }
